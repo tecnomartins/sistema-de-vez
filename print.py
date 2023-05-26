@@ -3,6 +3,18 @@ import serial
 from gtts import gTTS
 import os
 
+#################
+# Editar as frases ditas
+
+# Português
+pt = "por favor aguardar a sua vez"
+
+# Inglês
+en = "please wait your turn"
+
+# Francês
+fr = "s'il vous plait attendez votre tour"
+#################
 
 def readserial(comport, baudrate):
     ser = serial.Serial(comport, baudrate, timeout=1)  # 1/timeout is the frequency at which the port is read
@@ -22,13 +34,13 @@ def readserial(comport, baudrate):
 
             if firstcharacter == "a":
                 language = "pt"
-                mytext = "por favor aguardar a sua vez"
+                mytext = pt
             elif firstcharacter == "b":
                 language = "en"
-                mytext = "please wait your turn"
+                mytext = en
             elif firstcharacter == "c":
                 language = "fr"
-                mytext = "s'il vous plait attendez votre tour"
+                mytext = fr
 
             talk = gTTS(text=mytext, lang=language, slow=False)
             talk.save("wait.mp3")
